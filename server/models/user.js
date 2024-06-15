@@ -63,4 +63,4 @@ async function getUser(username) {
 }
 
 // 5. export all functions we want to access in route files
-module.exports = {register,login, updatePassword, deleteUser};
+module.exports = {register,login, updatePassword, deleteUser}; 
