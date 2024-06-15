@@ -15,9 +15,13 @@ mongoose.connect(process.env.dbURL)
 app.use(express.json());
 
 app.use(express.static(__dirname + "/public"))
-app.get('/',(req,res)=>res.sendFile(path.join(__dirname,'/public','index.html')));
+app.use('/user',require("./server/routes/user"));
 
+app.use('/post',require("./server/routes/post"));
 
+app.use('/subscribe',require("./server/routes/subscription"));
+
+// app.use
 
 
 app.use(function(req,res,next){
@@ -32,5 +36,5 @@ app.use(function(req,res,next){
 
 app.use('/user',userRoutes);
 app.use('/post',postRoutes);
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}!`)); 
