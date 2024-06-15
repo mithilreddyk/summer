@@ -40,4 +40,4 @@ async function getpost(id) {
 }
 
 
-module.exports = {createpost,updatepost, deletepost, getpost};
+module.exports = {createpost,updatepost, deletepost, getpost}; 
