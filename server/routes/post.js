@@ -6,7 +6,14 @@ router
 
 
 
-
+.get('/allposts', async(req,res)=>{
+  try{
+    let getPosts = await post.getposts();
+    res.send(getPosts)
+  }catch(err){
+    res.status(401).send({message: err.message});
+  }
+})
 
 .post('/getpost', async (req, res) => {
     try {
@@ -20,7 +27,8 @@ router
 
   .post('/createpost', async (req, res) => {
     try {
-      let postcreates = await post.createpost(req.body.id, req.body.postcontent);
+      console.log(req.body.title)
+      let postcreates = await post.createpost(req.body.userID, req.body.postcontent, req.body.title);
       res.send(postcreates)
     } catch(err) {
       res.status(401).send({message: err.message});

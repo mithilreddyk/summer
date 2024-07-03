@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express=require('express');
 const app=express();
+const cors = require("cors")
 const mongoose = require("mongoose");
 
 
@@ -13,6 +14,8 @@ mongoose.connect(process.env.dbURL)
   .then(console.log("DB Connected!!"))
   .catch(error => console.log(error));
 app.use(express.json());
+app.use(cors());
+
 
 app.use(express.static(__dirname + "/public"))
 app.use('/user',require("./server/routes/user"));

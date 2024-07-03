@@ -5,6 +5,7 @@ const postSchema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: "User"
     },
+    title:{type:String},
     postcontent: {type: String},
     postlikes: { type: String}
   })
@@ -12,13 +13,14 @@ const postSchema = new mongoose.Schema({
 const post = mongoose.model("post", postSchema);
 // 4. create CRUD functions on model
 //CREATE a post
-async function createpost(id, postcontent){
+async function createpost(id, postcontent,title){
 
   //const user = await getpost(id);
 
   const newpost=await post.create({
     userID: id, 
     postcontent: postcontent,
+    title,
     postlikes: 0
   });
   return newpost;
@@ -39,5 +41,9 @@ async function getpost(id) {
   return await post.findOne({"_id": id});
 }
 
+async function getposts(id) {
+  return await post.find();
+}
 
-module.exports = {createpost,updatepost, deletepost, getpost}; 
+
+module.exports = {createpost,updatepost, deletepost, getpost, getposts}; 
