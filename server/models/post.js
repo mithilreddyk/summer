@@ -26,9 +26,9 @@ async function createpost(id, postcontent,title){
   return newpost;
 
 }
-async function updatepost(id,postcontent){
-  const post = await post.updateOne({"_id": id}, {$set: { postcontent: postcontent}});
-  return post;
+async function updatepost(data){
+  const updatedpost = await post.updateOne({"_id": data.id},data);
+  return updatedpost;
 
 }
 

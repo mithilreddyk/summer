@@ -39,7 +39,7 @@ router
 
   .post('/updatepost', async (req, res) => {
     try {
-      let postupdates = await post.updatepost(req.body.id, req.body.postcontent);
+      let postupdates = await post.updatepost(req.body);
       res.send(postupdates)
     } catch(err) {
       res.status(401).send({message: err.message});
